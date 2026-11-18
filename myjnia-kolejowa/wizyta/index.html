@@ -26,7 +26,7 @@ const demo = true;
       const [label, cls] = STATUS[b.status];
       box.innerHTML = `<span class="badge ${cls}">${label}</span>
         <p class="when display num">${when.toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long' })}<br>${b.start.slice(11)}</p>
-        <ul class="facts"><li><span>Felga</span><b>${b.size}″</b></li><li><span>Cena</span><b class="num">${b.price} zł</b></li><li><span>Adres</span><b>${address}</b></li></ul>
+        <ul class="facts"><li><span>Felga</span><b>${b.size}″</b></li>${b.addons ? `<li><span>Dodatki</span><b>${Array.isArray(b.addons) ? b.addons.join(", ") : b.addons}</b></li>` : ""}<li><span>Cena</span><b class="num">${b.price_max && b.price_max > b.price ? `${b.price}–${b.price_max}` : b.price} zł</b></li><li><span>Adres</span><b>${address}</b></li></ul>
         ${active ? '<div class="actions"><button class="btn" id="move">Zmień termin</button><button class="btn danger" id="cancel">Odwołaj wizytę</button></div>' : ''}
         <p class="error" id="err"></p>`;
       if (!active) return;
